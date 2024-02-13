@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion des membres</title>
+</head>
+<body>
+
+<h2>Gestion des membres</h2>
+
+<form action="/members" method="post">
+    <label for="firstName">Prénom:</label><br>
+    <input type="text" id="firstName" name="firstName"><br>
+    <label for="lastName">Nom:</label><br>
+    <input type="text" id="lastName" name="lastName"><br>
+    <label for="age">Âge:</label><br>
+    <input type="number" id="age" name="age"><br>
+    <label for="phone">Téléphone:</label><br>
+    <input type="text" id="phone" name="phone"><br><br>
+    <button type="submit">Ajouter</button>
+</form>
+
+<ul>
+    <% members.forEach(member => { %>
+        <li><%= member.firstName %> <%= member.lastName %>, <%= member.age %> ans, Tél: <%= member.phone %>
+            <form action="/members/delete" method="post">
+                <input type="hidden" name="id" value="<%= member._id %>">
+                <button type="submit">Supprimer</button>
+            </form>
+        </li>
+    <% }); %>
+</ul>
+
+</body>
+</html>
